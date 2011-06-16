@@ -1,7 +1,8 @@
 
 
 $(function(){
-  $.jScrape_server = "localhost:3001"
+  //$.jScrape_server = "localhost:3001"
+  $.jScrape_server = "jscrape.it:9393"
 
   agent = new $.jScrape()
   // frame = jScrape.frame("#jsc_frame1")
