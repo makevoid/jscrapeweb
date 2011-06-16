@@ -1,0 +1,198 @@
+
+
+
+
+@import "mixins"
+
+@mixin button
+  display: inline-block
+  padding: .1em 1em .12em
+  outline: none
+  cursor: pointer
+  text-align: center
+  text-decoration: none
+  font-size: 1.3em
+  @include rounded('.5em')
+  // this determines Mozilla to show the padding
+  border: solid 1px #ccc
+  @include shadow
+  text-shadow: 0 1px 1px rgba(0,0,0,.3)
+  &:hover
+    text-decoration: none
+  &:active
+    position: relative
+    top: 1px
+
+=trans_grad($top, $bottom, $alpha)
+  $top: transparentize($top, $alpha)
+  $bottom: transparentize($bottom, $alpha)
+  background-image: -moz-linear-gradient(top, $top, $bottom)
+  background-image: -webkit-gradient(linear, center top, center bottom, from($top), to($bottom))
+
+
+// clearfix
+
+*, html, body
+  margin: 0
+  padding: 0
+
+html, body
+  height: 100%
+
+//html, body 
+//  height: 100%     
+//  max-height: 100%
+  
+img
+  border: 0
+
+ul 
+  list-style-type: none
+
+li
+  display: inline
+
+.clear
+  clear: both
+
+a 
+  text-decoration: none
+  
+  
+  
+// style
+
+$bg: #EEE
+$bg_alt: #56D1A9
+$bg_cont: #FFF
+$bg_cont_alt: #EB6E1E
+$txt: #222
+$main: #999
+$alt: #666
+$links: #444
+
+@font-face
+  font-family: Guardian
+  src: url( /fonts/guardian.eot ) /* IE 6,7,8 */  
+  
+@font-face
+  font-family: Guardian
+  src: url('/fonts/guardian.otf')
+  
+body
+  font-family: sans-serif, Helvetica, Arial, Verdana
+  color: $txt
+  font-size: 120%
+  height: 100%
+  background: $bg_alt
+
+  
+
+#wrap 
+  // radial mixin
+  background: $bg
+  background-image: radial-gradient(center bottom, cover, $bg_alt, $bg)
+  background-image: -moz-radial-gradient(center bottom, circle cover, $bg_alt, $bg)
+  background-image: -webkit-gradient(radial, center bottom, 700, center bottom, 300, from($bg), to($bg_alt))
+  min-height: 100%
+  padding: 30px 0 10px
+
+
+a
+  color: $links
+a:hover
+  color: $links + #111
+
+input[type='submit'], input.submit, a.button
+  +button
+  +color($main)
+  +rounded(15px)
+
+#container  
+  min-height: 100%
+  width: 90%
+  margin: 0 auto 20px 
+  padding: 0
+  // transparent mixin
+  +trans_grad($bg_cont_alt, #FFF, 0.6)
+  border: 2px solid $bg_cont_alt 
+  +border-radius(30px)
+  +box-shadow(2px, 2px, 30px, $bg_cont_alt )
+
+#content
+  margin: 0 30px 0
+  padding: 0 0 30px
+  text-shadow: 1px 1px 1px #FFF
+
+header
+  padding: 12px 30px 12px
+  +trans_grad($bg_cont_alt+#222, $bg_cont_alt - #777, 0.2)
+  border-bottom: 2px solid $bg_cont_alt
+  +border-radius-top(30px)
+  color: #fAFAFA
+  text-shadow: 2px 2px 3px #333
+  a
+    color: #FAFAFA
+  a:hover
+    color: #FFF
+    text-shadow: 2px 3px 3px #000
+  
+p 
+  font-size: 1em
+
+pre
+  font-size: 1.2em
+  background: $bg + #333
+  padding: 12px 15px
+  border: 1px solid $txt + #777
+  +rounded(20px)
+  
+h1 
+  font-size: 2em
+  span
+    font-size: 0.55em
+    display: block
+    
+h2
+  margin: 20px 0 5px
+  font-size: 1.4em
+
+h3
+  margin: 10px 0 3px
+  font-size: 1.2em
+  
+h4
+  margin: 8px 0 3px
+  font-size: 1.05em
+
+.inline
+  float: left
+  margin-right: 10px
+  
+.address
+  font-weight: bold
+  font-size: 1em
+  background: $bg + #111
+  padding: 4px 10px
+  border: 2px solid $txt + #777
+  +rounded(10px)
+  
+.demo
+  margin: 10px 0
+  padding: 12px
+  background: $bg - #222
+  border: 1px solid $txt + #777
+  +rounded(20px)
+  a.button
+    margin-top: 3px
+    font-weight: bold
+    font-size: 1em
+    +color($main)
+  
+.jsc_frame
+  margin: 20px 0 10px
+  padding: 12px
+  background: $bg - #444
+  +rounded(10px)
+  
+  

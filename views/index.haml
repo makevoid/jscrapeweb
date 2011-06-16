@@ -1,0 +1,51 @@
+%h2 What?
+
+%p Easily scrape content from javascript bypassing the Origin policy by making ajax requests to the jScrape server
+
+%h2 Whaaat?
+
+%p NO more IFRAMES! Get the content directly trough javascript ajax calls
+
+%h3 Aaaaaah...
+
+
+%h2 Well... How?
+
+
+%pre
+  :preserve
+    jscrape = new jScrape()
+    frame = jscrape.frame("#jsc_frame")
+    frame.get(url)
+    // or :
+    // frame.get(url).fetch("css selector")
+  
+- content_for :head do 
+  %script{ type: "text/javascript" }
+    :plain
+      $(function(){
+        
+        frame = jScrape.frame("#jsc_frame1")
+        frame.get(url)
+      })
+  
+#demo1.demo
+  %p.address.inline http://google.com
+  %a.button#jsc_test1{ href: "javascript:void(0)" } Load
+
+  #jsc_frame1.jsc_frame
+    This is the target frame
+  
+%h2 How does it work?
+
+%p 
+  You request the content from jScrape server and he makes the call, handles redirects 
+  / and thinks about keeping a cached copy
+
+
+%h3 To be Implemented
+%ul.features
+  %li caching
+
+%h4 please fork!
+  
