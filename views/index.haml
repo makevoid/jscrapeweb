@@ -17,20 +17,16 @@
     jscrape = new jScrape()
     frame = jscrape.frame("#jsc_frame")
     frame.get(url)
-    // or :
-    // frame.get(url).fetch("css selector")
+// or :
+// frame.get(url).fetch("css selector")
   
-- content_for :head do 
-  %script{ type: "text/javascript" }
-    :plain
-      $(function(){
-        
-        frame = jScrape.frame("#jsc_frame1")
-        frame.get(url)
-      })
-  
+
+
 #demo1.demo
-  %p.address.inline http://google.com
+  %p.inline url:
+  %p.address.inline http://jquery.com
+  %p.inline find: 
+  %p.address.inline #jq-intro
   %a.button#jsc_test1{ href: "javascript:void(0)" } Load
 
   #jsc_frame1.jsc_frame
