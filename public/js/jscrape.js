@@ -1,67 +1,63 @@
 (function() {
   var Frame, Page, Scrapable, jScrape;
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
   if (!(window.console || console.log)) {
     window.console = {};
     console.log = function() {};
   }
+  Scrapable = (function() {
+    function Scrapable() {}
+    Scrapable.prototype.get = function(url, callback) {
+      var that;
+      url = encodeURIComponent(url);
+      this.data = void 0;
+      that = this;
+      $.get("http://" + $.jScrape_server + "/q/" + url, __bind(function(data) {
+        this.page = new Page(data, that);
+        this.data = data;
+        return callback(this.page);
+      }, this));
+      return this;
+    };
+    return Scrapable;
+  })();
   Frame = (function() {
+    __extends(Frame, Scrapable);
     function Frame(elem) {
       this.elem = elem;
     }
     return Frame;
   })();
-  Scrapable = (function() {
-    function Scrapable() {}
-    return Scrapable;
-  })();
   Page = (function() {
-    function Page(body) {
-      var html;
-      this.body = body;
-      $("#jscrape_cont").remove();
-      html = $(this.body).find("#jq-intro").html();
-      this.elem = "#jsc_frame1";
-      $(this.elem).html(html);
-      console.log(html);
-      this.body = $("#jscrape_cont").find("title").html();
+    function Page(html, frame) {
+      this.html = html;
+      this.frame = frame;
     }
+    Page.prototype.fetch = function(selector) {
+      this.html = $(this.html).find(selector);
+      this.render();
+      return this.html;
+    };
+    Page.prototype.render = function() {
+      return $(this.frame.elem).html(this.html);
+    };
     return Page;
   })();
   jScrape = (function() {
+    __extends(jScrape, Scrapable);
     function jScrape() {
-      this.timeout = 4000;
+      this.timeout = 3000;
     }
     jScrape.prototype.frame = function(frame_elem) {
-      var frame;
       this.frame_elem = frame_elem;
-      return frame = new Frame(this.frame_elem);
-    };
-    jScrape.prototype.get = function(url) {
-      var that;
-      url = encodeURIComponent(url);
-      this.data = void 0;
-      that = this;
-      $.get("http://" + $.jScrape_server + "/q/" + url, function(data) {
-        that.page = new Page(data);
-        return that.data = data;
-      });
-      this.time = new Date();
-      that = this;
-      this.timer = setInterval(function() {
-        return that.checkForCallback();
-      }, 10);
-      return this.data;
-    };
-    jScrape.prototype.checkForCallback = function() {
-      var time;
-      time = new Date();
-      if ((time - this.time) > this.timeout) {
-        this.data = "TimeOutError";
-        clearInterval(this.timer);
-      }
-      if (this.data !== void 0) {
-        return clearInterval(this.timer);
-      }
+      return this.frame = new Frame(this.frame_elem);
     };
     return jScrape;
   })();

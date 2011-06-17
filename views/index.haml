@@ -14,18 +14,24 @@
 
 %pre
   :preserve
+    url = "http://jquery.com"
+    jscrape = new jScrape()
+    page = jscrape.get(url).html
+
+%h3 A 'practical' example:
+%p Including external content without using iframes    
+
+%pre
+  :preserve
     jscrape = new jScrape()
     frame = jscrape.frame("#jsc_frame")
-    frame.get(url)
-// or :
-// frame.get(url).fetch("css selector")
-  
-
-
+    page = frame.get(url)
+    result = page.fetch("css selector")
+    
 #demo1.demo
   %p.inline url:
   %p.address.inline http://jquery.com
-  %p.inline find: 
+  %p.inline fetch: 
   %p.address.inline #jq-intro
   %a.button#jsc_test1{ href: "javascript:void(0)" } Load
 
@@ -46,3 +52,14 @@
 
 %h4 please fork!
   
+
+#demo2.demo
+  %form{ action: "#" } 
+    %p.inline url:
+    %input.address.inline{ name: "address", type: "text", value: "http://makevoid.com" }
+    %p.inline fetch: 
+    %input.address.inline{ name: "selector", type: "text", value: "img" } 
+    %input.button#jsc_test1{ type: "submit", value: "Load" }
+
+  #jsc_frame2.jsc_frame
+    This is the target frame
