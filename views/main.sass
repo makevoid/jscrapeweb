@@ -100,8 +100,10 @@ body
 
 a
   color: $links
+  text-shadow: 1px 1px 1px #FFF
 a:hover
   color: $links + #111
+  text-shadow: 0px 0px 2px #00FF75
 
 input[type='submit'], input.submit, a.button
   +button
@@ -130,9 +132,9 @@ header
   border-bottom: 2px solid $bg_cont_alt
   +border-radius-top(30px)
   color: #fAFAFA
-  text-shadow: 2px 2px 3px #333
   a
     color: #FAFAFA
+    text-shadow: 2px 2px 3px #333
   a:hover
     color: #FFF
     text-shadow: 2px 3px 3px #000
@@ -196,4 +198,12 @@ h4
   background: $bg - #444
   +rounded(10px)
   
+.tbi_features  
+  li 
+    display: block
+    
+pre
+  margin-top: 8px
   
+.space
+  margin-top: 30px
