@@ -44,7 +44,7 @@
       this.frame = frame;
     }
     Page.prototype.fetch = function(selector) {
-      this.html = $(this.html).find(selector);
+      this.html = selector !== "body" ? $(this.html).find(selector) : $(this.html);
       this.render();
       return this.html;
     };

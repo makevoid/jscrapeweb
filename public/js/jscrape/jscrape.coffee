@@ -26,7 +26,11 @@ class Page
   constructor: (@html, @frame) ->
 
   fetch: (selector) ->
-    @html = $(@html).find(selector)#.first()
+    @html = unless selector == "body"
+      $(@html).find(selector)#.first()
+    else
+      $(@html)
+      
     this.render()
     @html
     
