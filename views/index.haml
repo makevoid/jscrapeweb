@@ -14,19 +14,23 @@
 
 %pre
   :preserve
-    url = "http://jquery.com"
-    jscrape = new jScrape()
-    page = jscrape.get(url).html
+    var url = "http://jquery.com"
+    var jscrape = new $.jScrape()
+    
+    jscrape.get(url, function(page){
+      var html = jscrape.get(url).html
+    })
 
 %h3 A 'practical' example:
 %p Including external content without using iframes    
 
 %pre
   :preserve
-    jscrape = new jScrape()
-    frame = jscrape.frame("#jsc_frame")
-    page = frame.get(url)
-    result = page.fetch("css selector")
+    var url = "http://jquery.com"
+    var jscrape = new $.jScrape()
+    jscrape.frame("#jsc_frame").get(url, function(page){
+      page.fetch("body") // use css selectors
+    })
     
 #demo1.demo
   %p.inline url:

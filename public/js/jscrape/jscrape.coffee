@@ -2,7 +2,8 @@ unless window.console || console.log
   window.console = {}
   console.log = ->
 
-    
+if ($.jScrape_server == undefined)
+  $.jScrape_server = "jscrape.it" 
 
 class Scrapable
   get: (url, callback) ->
@@ -16,9 +17,6 @@ class Scrapable
       callback(this.page)
       # that.callback data 
     this
-    
-
-
     
 class Frame extends Scrapable
   constructor: (@elem) ->

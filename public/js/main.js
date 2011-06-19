@@ -20,9 +20,7 @@ $(function(){
     jscrape.get(url, function(page){
       var html = $(page.html).find("#jq-intro").html()
       $("#jsc_frame1").html(html)
-    })
-
-    
+    })    
   })
     
 
