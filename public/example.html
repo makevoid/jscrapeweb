@@ -1,0 +1,20 @@
+<html>
+  <body>
+    This is a simple example of jscrape capabilities, please 
+    <a href='https://github.com/makevoid/jscrapeweb/tree/master/public/example.html'>read the source</a>
+    
+    <script src='http://code.jquery.com/jquery-1.6.1.min.js'></script>
+    <script src='http://jscrape.it/js/jscrape/jscrape.js'></script>
+    
+    <script type='text/javascript'>
+      $(function(){
+        var url = "http://jquery.com"
+        var jscrape = new $.jScrape()
+        jscrape.frame("#jsc_frame").get(url, function(page){
+          page.fetch("body") // use css selectors
+        })
+      })
+    </script>
+    <div id="#jsc_frame"></div>
+  </body>
+</html>
