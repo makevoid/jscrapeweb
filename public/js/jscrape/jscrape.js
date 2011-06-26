@@ -17,15 +17,12 @@
   }
   Scrapable = (function() {
     function Scrapable() {}
-    Scrapable.prototype.get = function(url, callback, cookies) {
+    Scrapable.prototype.get = function(url, callback) {
       var that;
       url = encodeURIComponent(url);
       this.data = void 0;
       that = this;
-      if (cookies != null) {
-        cookies = "/" + cookies;
-      }
-      $.get("http://" + $.jScrape_server + "/q/" + url + cookies, __bind(function(data) {
+      $.get("http://" + $.jScrape_server + "/q/" + url, __bind(function(data) {
         this.page = new Page(data, that);
         this.data = data;
         return callback(this.page);
@@ -47,7 +44,7 @@
       this.frame = frame;
     }
     Page.prototype.fetch = function(selector) {
-      this.html = $(this.html).find(selector);
+      this.html = selector !== "body" ? $(this.html).find(selector) : $(this.html);
       this.render();
       return this.html;
     };
