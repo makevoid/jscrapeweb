@@ -22,7 +22,7 @@
       url = encodeURIComponent(url);
       this.data = void 0;
       that = this;
-      if (headers) {
+      if (headers != null) {
         headers = "/" + headers;
       }
       $.get("http://" + $.jScrape_server + "/q/" + url + headers, __bind(function(data) {
