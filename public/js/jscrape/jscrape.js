@@ -17,15 +17,15 @@
   }
   Scrapable = (function() {
     function Scrapable() {}
-    Scrapable.prototype.get = function(url, callback, headers) {
+    Scrapable.prototype.get = function(url, callback, cookies) {
       var that;
       url = encodeURIComponent(url);
       this.data = void 0;
       that = this;
-      if (headers != null) {
-        headers = "/" + headers;
+      if (cookies != null) {
+        cookies = "/" + cookies;
       }
-      $.get("http://" + $.jScrape_server + "/q/" + url + headers, __bind(function(data) {
+      $.get("http://" + $.jScrape_server + "/q/" + url + cookies, __bind(function(data) {
         this.page = new Page(data, that);
         this.data = data;
         return callback(this.page);
