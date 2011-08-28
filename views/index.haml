@@ -1,6 +1,6 @@
 %h2 What?
 
-%p Easily scrape content from javascript bypassing the Origin policy by making ajax requests to the jScrape server
+%p Easily scrape content from javascript bypassing the same origin policy by making ajax requests to the jScrape server.
 
 %h2 Whaaat?
 
@@ -9,9 +9,12 @@
 %h3 Aaaaaah...
 
 
-%h2 Well... How?
+%h2 Well... How? 
+
+%p here there are the two main public methods:
 
 
+%h3 get()
 %pre
   :preserve
     var url = "http://jquery.com"
@@ -21,8 +24,11 @@
       var html = jscrape.get(url).html
     })
 
-%h3 A 'practical' example:
-%p Including external content without using iframes    
+%p is as simple as this!
+%p instead of doing $.get (jQuery get) directly but using jScrape get() you get access to any web resource, without being blocked by the same origin policy. jScrape-server underneath is handling the request and passing it to you using "Access-Control-Allow-Origin: *" header.
+
+%h3 frame()
+%p Including external content without using iframes using jScrape frame()
 
 %pre
   :preserve
@@ -32,26 +38,31 @@
       page.fetch("body") // use css selectors
     })
     
-#demo1.demo
-  %p.inline url:
-  %p.address.inline http://jquery.com
-  %p.inline fetch: 
-  %p.address.inline #jq-intro
-  %a.button#jsc_test1{ href: "javascript:void(0)" } Load
 
-  #jsc_frame1.jsc_frame
+#demo2.demo
+  %form{ action: "#" } 
+    %p.inline url:
+    %input.address.inline{ name: "address", type: "text", value: "http://jquery.com" }
+    %p.inline fetch: 
+    %input.selector.inline{ name: "selector", type: "text", value: "img" } 
+    %input.button#jsc_test1{ type: "submit", value: "Load" }
+
+  #jsc_frame2.jsc_frame
     This is the target frame
   
-%h2 How does it work?
+%h2 How does it works?
 
 %p 
   You request the content from jScrape server that makes the call, handles redirects and handle you the page content, you can traverse it with css selectors and get the datas you care about 
   / and thinks about keeping a cached copy
 
 
-%h3 To be Implemented
+%h3 To be Implemented:
 %ul.tbi_features
-  %li - serverside traversing
+  %li 
+    \- traversing server-side implementation (
+    - link_to "jscrape-server", "https://github.com/makevoid/jscrape-server"
+    )
   %li - caching
   %li - main namespace + jquery independence
 
@@ -59,20 +70,11 @@
   - link_to "please fork!", "https://github.com/makevoid/jscrape"
   
 
-#demo2.demo
-  %form{ action: "#" } 
-    %p.inline url:
-    %input.address.inline{ name: "address", type: "text", value: "http://makevoid.com" }
-    %p.inline fetch: 
-    %input.address.inline{ name: "selector", type: "text", value: "img" } 
-    %input.button#jsc_test1{ type: "submit", value: "Load" }
-
-  #jsc_frame2.jsc_frame
-    This is the target frame
 
 
 %h3.space
   See the a 
   - link_to "simple complete working example", "http://jscrape.it/example.html" 
-  with
+  and its
   - link_to "source code", "https://github.com/makevoid/jscrapeweb/blob/master/public/example.html"
+  \.

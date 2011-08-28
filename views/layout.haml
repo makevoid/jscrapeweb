@@ -5,9 +5,9 @@
     %link{ href: "/css/main.css", rel: "stylesheet" }
     %meta{ charset: "utf-8" }
     %meta{ :"http-equiv" => "X-UA-Compatible", content: "IE=edge,chrome=1" }
-    %meta{ name: "description", content: "" }
-    %meta{ name: "keywords", content: "" }    
-    %meta{ name: "author", content: "" }    
+    %meta{ name: "description", content: "Easily scrape content from javascript bypassing the XMLHTTPRequest Same Origin policy by making ajax requests to the jScrape server" }
+    %meta{ name: "keywords", content: "javascript, scrape, js, library, jsonp, same origin policy, ajax, jquery, XMLHTTPRequest" }    
+    %meta{ name: "author", content: "Francesco 'makevoid' Canessa" }    
     -# %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
     %script{ src: "/js/modernizr.js", type: "text/javascript" }
   %body{ class: body_class }
@@ -26,6 +26,5 @@
       %script{ src: "/js/main.js", type: "text/javascript" }
       = yield_content :head
       %script{ type: "text/javascript" }
-        $(function(){
-        = yield_content :jquery
-        });
+
+    %script= gauges "4e5a82b8f5a1f56edb000001"    

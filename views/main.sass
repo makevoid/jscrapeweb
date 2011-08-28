@@ -69,7 +69,7 @@ $bg_cont_alt: #EB6E1E
 $txt: #222
 $main: #999
 $alt: #666
-$links: #444
+$links: #EB6E1E
 
 @font-face
   font-family: Guardian
@@ -171,7 +171,8 @@ h4
   float: left
   margin: 5px 0 0 5px
   
-.address
+  
+=rounded_input()
   font-weight: bold
   font-size: 1em
   background: $bg + #111
@@ -179,6 +180,15 @@ h4
   margin-right: 5px 
   border: 2px solid $txt + #777
   +rounded(10px)
+  
+.selector
+  +rounded_input
+  width: 100px
+  
+.address
+  +rounded_input
+  width: 300px
+  
   
 .demo
   margin: 10px 0
