@@ -3,8 +3,6 @@ source "http://rubygems.org"
 gem 'haml'
 gem 'sass'
 gem 'sinatra'
-gem "sinatra-content-for"
-gem "sinatra-reloader"
 gem 'rack-flash'
 # gem 'dm-core'
 # gem 'dm-sqlite-adapter'
